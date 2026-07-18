@@ -1,65 +1,71 @@
 import Image from "next/image";
+import Link from "next/link";
+import AnimatedHeading from "@/components/AnimatedHeading";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="relative min-h-screen w-full overflow-hidden ">
+      {/* 1. Gambar Latar Belakang (Optimized) */}
+      <Image
+        src="/background/latar.webp"
+        alt="Latar Belakang Kran Kamar Mandi Aer"
+        fill
+        quality={100}
+        priority
+        className="object-cover object-top grayscale brightness-[0.7] z-0"
+      />
+
+      {/* 2. Overlay Hitam Transparan (opsional untuk kontras teks) */}
+      <div className="absolute inset-0 bg-black/10 z-10" />
+
+      {/* 3. Konten Utama (Teks dan Tombol) */}
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center px-4">
+        {/* Logo Aer (Lingkaran Lonjong) */}
+        <div className="mb-8 md:mb-10 mt-[-5%]">
+          {" "}
+          {/* Sedikit penyesuaian posisi */}
+          <Image
+            src="/logo/logo-smp.png"
+            alt="Logo Sinergi Mandiri Perkasa"
+            width={150}
+            height={80}
+            className="opacity-90"
+          />
+        </div>
+
+        {/* Teks Utama (Quality of Life) */}
+        <AnimatedHeading
+          text="Sinergi Mandiri Perkasa"
+          className="font-serif text-3xl md:text-6xl lg:text-7xl font-normal text-smp-orange mb-12 md:mb-16 tracking-tight leading-tight"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        {/* Container Tombol */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-sm sm:max-w-none sm:justify-center">
+          {/* Tombol "ENTER SITE" */}
+          <Link
+            href="/main" // Ganti dengan rute tujuan situs utama Anda
+            className="group flex-1 sm:flex-initial inline-flex items-center justify-center 
+                       border border-smp-orange bg-white/10 px-8 py-3 
+                       text-sm md:text-base font-medium text-smp-orange uppercase tracking-wider 
+                       backdrop-blur-sm transition-all duration-300 
+                       hover:bg-smp-orange hover:text-white hover:border-smp-orange"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Building Materials
+          </Link>
+
+          {/* Tombol "SHOP" */}
+          <Link
+            href=""
+            className="group flex-1 sm:flex-initial inline-flex items-center justify-center 
+                       border border-smp-orange bg-white/10 px-8 py-3 
+                       text-sm md:text-base font-medium text-smp-orange uppercase tracking-wider 
+                       backdrop-blur-sm transition-all duration-300 
+                       hover:bg-smp-orange hover:text-white hover:border-smp-orange"
           >
-            Documentation
-          </a>
+            AMDK
+          </Link>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

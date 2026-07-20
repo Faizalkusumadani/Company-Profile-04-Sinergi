@@ -8,7 +8,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 // ─── Site Config ──────────────────────────────────────────────────────────────
@@ -16,7 +16,7 @@ const siteConfig = {
   url: "https://sinergimandiriperkasa.co.id/",
   name: "Sinergi Mandiri Perkasa",
   description:
-    "PT Sinergi Mandiri Perkasa adalah distributor bahan bangunan terpercaya dengan produk berkualitas tinggi seperti Semen Merah Putih, Mortindo, Drymix, Ziegel, Wavin, dan Servvo. Kepercayaan Anda adalah Prioritas Kami.",
+    "PT Sinergi Mandiri Perkasa merupakan perusahaan distribusi dengan dua lini bisnis utama, yaitu Building Materials dan FMCG Products. Kami menghadirkan produk berkualitas melalui layanan distribusi yang profesional dan terpercaya.",
   ogImage: "/logo/og-image.png",
 } as const;
 
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 
   title: {
-    default: `${siteConfig.name} | Distributor Bahan Bangunan, Sanitary dan Air Mineral`,
+    default: `${siteConfig.name} | Distributor Bahan Bangunan, Sanitary dan FMCG di Jabodetabek`,
     template: `${siteConfig.name} | %s`,
   },
   openGraph: {
     type: "website",
     url: `${siteConfig.url}`,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} | Distributor Bahan Bangunan, Sanitary dan Air Mineral`,
+    title: `${siteConfig.name} | Distributor Bahan Bangunan, Sanitary dan FMCG di Jabodetabek`,
     description: siteConfig.description,
     images: [
       {
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | Distributor Bahan Bangunan, Sanitary dan Air Mineral`,
+    title: `${siteConfig.name} | Distributor Bahan Bangunan, Sanitary dan FMCG di Jabodetabek`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -80,7 +80,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} h-full antialiased`}>
       <body>
         <Pageloader />
-        <main className="bg-smp-dark min-h-screen">{children}</main>
+        <main className="bg-gray-800 min-h-screen">{children}</main>
 
         {/* Komponen GA hanya akan muncul jika gaId tersedia */}
         {gaId && <GoogleAnalytics gaId={gaId} />}

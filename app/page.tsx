@@ -1,18 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Handshake,
-  Briefcase,
-  Building2,
-  Hourglass,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const stats = [
-  { icon: Handshake, value: "15+", label: "Brand Partners" },
-  { icon: Briefcase, value: "100+", label: "Business Clients" },
-  { icon: Building2, value: "2", label: "Business Divisions" },
-  { icon: Hourglass, value: "2014", label: "Established Since" },
+  { value: "15+", label: "Brand Partners" },
+  { value: "100+", label: "Business Clients" },
+  { value: "2", label: "Business Divisions" },
+  { value: "2014", label: "Established Since" },
 ];
 
 export default function BusinessDivisions() {
@@ -27,13 +21,13 @@ export default function BusinessDivisions() {
         className="absolute inset-0 opacity-[0.35]"
         style={{
           backgroundImage:
-            "radial-linear(rgba(255,255,255,0.14) 1px, transparent 1px)",
+            "radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px)",
           backgroundSize: "22px 22px",
         }}
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-linear(ellipse_at_center,transparent_35%,#080B14_85%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,#080B14_85%)]"
       />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6">
@@ -56,20 +50,22 @@ export default function BusinessDivisions() {
 
         {/* Eyebrow dengan garis */}
         <div className="mt-5 mb-8 flex items-center justify-center gap-4">
-          <span className="h-px w-8 bg-smp-orange/60" />
+          <span className="h-px w-8 bg-linear-to-r from-transparent via-smp-orange/70 to-transparent" />
           <span className="text-[10px] sm:text-base font-medium tracking-[0.3em] uppercase text-smp-orange/60">
             Official Distribution Company
           </span>
-          <span className="h-px w-8 bg-smp-orange/60" />
+          <span className="h-px w-8 bg-linear-to-r from-transparent via-smp-orange/70 to-transparent" />
         </div>
 
         {/* Deskripsi */}
-        <p className="mx-auto max-w-3xl text-center text-white/60 font-light text-sm md:text-base leading-relaxed md:leading-loose mb-16">
+        <p className="mx-auto max-w-3xl text-center text-white/70 font-light text-sm md:text-base leading-relaxed md:leading-loose mb-16">
           PT Sinergi Mandiri Perkasa merupakan perusahaan distribusi dengan dua
           lini bisnis utama, yaitu{" "}
-          <span className="text-white font-medium">Building Materials</span> dan{" "}
-          <span className="text-white font-medium">FMCG Products</span>. Kami
-          menghadirkan produk berkualitas melalui layanan distribusi yang
+          <span className="text-smp-orange font-medium">
+            Building Materials
+          </span>{" "}
+          dan <span className="text-smp-blue font-medium">FMCG Products</span>.
+          Kami menghadirkan produk berkualitas melalui layanan distribusi yang
           profesional dan terpercaya.
         </p>
 
@@ -85,6 +81,7 @@ export default function BusinessDivisions() {
             href="https://build.sinergimandiriperkasa.co.id/"
             accent="orange"
             align="end"
+            priority={true}
           />
           <DivisionCard
             image="/images/fmcg-products.png"
@@ -100,25 +97,20 @@ export default function BusinessDivisions() {
         </div>
 
         {/* Stats bar */}
-        <div className="mt-14 rounded-2xl border border-white/10 bg-white/3 backdrop-blur-sm px-6 py-6 md:px-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4">
-            {stats.map(({ icon: Icon, value, label }, i) => (
+        <div className="mt-14 rounded-2xl border border-white/10 bg-white/3 backdrop-blur-sm px-6 py-10 md:px-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
+            {stats.map(({ value, label }, i) => (
               <div
                 key={label}
-                className={`flex items-center gap-3 justify-center md:justify-start ${
+                className={`flex flex-col items-center text-center gap-3 ${
                   i > 0 ? "md:border-l md:border-white/10 md:pl-6" : ""
                 }`}
               >
-                <Icon
-                  className={i % 2 === 0 ? "text-smp-orange" : "text-sky-400"}
-                  size={50}
-                  strokeWidth={1.75}
-                />
-                <div className="text-left">
-                  <p className="text-white text-lg md:text-xl font-bold leading-none">
+                <div>
+                  <p className="text-smp-orange text-2xl md:text-3xl font-bold leading-none tracking-tight">
                     {value}
                   </p>
-                  <p className="text-white/50 text-xs md:text-sm mt-1">
+                  <p className="text-white/50 text-[11px] md:text-xs font-medium uppercase tracking-wider mt-2">
                     {label}
                   </p>
                 </div>
@@ -150,6 +142,7 @@ function DivisionCard({
   href,
   accent,
   align = "start",
+  priority = false,
 }: {
   image: string;
   imageAlt: string;
@@ -160,17 +153,18 @@ function DivisionCard({
   href: string;
   accent: "orange" | "blue";
   align?: "start" | "end";
+  priority?: boolean;
 }) {
   const isEnd = align === "end";
   const isOrange = accent === "orange";
-  const borderColor = isOrange ? "border-smp-orange/50" : "border-sky-500/50";
+  const borderColor = isOrange ? "border-smp-orange/50" : "border-smp-blue/50";
   const hoverBorder = isOrange
     ? "hover:border-smp-orange"
-    : "hover:border-sky-400";
-  const line2Color = isOrange ? "text-smp-orange" : "text-sky-400";
+    : "hover:border-smp-blue";
+  const line2Color = isOrange ? "text-smp-orange" : "text-smp-blue";
   const buttonBorder = isOrange
     ? "border-smp-orange text-smp-orange hover:bg-smp-orange hover:text-white"
-    : "border-sky-400 text-sky-300 hover:bg-sky-500 hover:text-white";
+    : "border-smp-blue text-smp-blue hover:bg-smp-blue hover:text-white";
 
   return (
     <div
@@ -183,6 +177,7 @@ function DivisionCard({
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform duration-500 group-hover:scale-105"
+        priority={priority}
       />
       {/* linear overlay agar teks terbaca */}
       <div

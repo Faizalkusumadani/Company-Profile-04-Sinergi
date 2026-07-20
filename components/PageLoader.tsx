@@ -93,6 +93,7 @@ export default function PageLoader() {
             width={120}
             height={80}
             style={{ objectFit: "contain" }}
+            className="w-30 h-20"
             priority
           />
           <span
